@@ -1,0 +1,211 @@
+CLASS - 04:
+
+Todays topics:
+
+Vim editor
+User management
+
+vim editor
+
+CAT >
+CAT >>
+
+In Linux, Vim stands for "Vi IMproved" and is a powerful, highly configurable, and widely used text editor. It's an enhanced version of the original Vi editor, known for its modal editing system and efficient keyboard-based operation. Vim is primarily used for editing text files, including code, scripts, and configuration files.
+
+Connect the server
+ssh -i daws-84s ec2-user@I.p
+
+ls -l = long list
+
+vim <file-name>
+
+3 MODEs
+Esc, Colon, insert MODEs
+
+
+
+
+command MODE
+==============
+:q -> quit the file
+:wq --> write and quit
+:wq! --> force write and quit
+:q! --> exit without saving
+
+ cp /etc/passwd users --> we have user information
+
+:/<word-search> --> search for the word from top
+:?<word-search> --> search for the word from bottom
+
+:/ - forword search
+?/ - backword search
+
+:noh --> no highlight
+:set nu --> set numbers
+:set nonu --> set no numbers
+:27 d --> delete 27th line
+:%d --> total content will be deleted
+:3s/sbin/SBIN --> in 3rd line first occurence of sbin will be replaced with SBIN
+:3s/sbin/SBIN/g --> all occurence in that line
+:%s/sbin/SBIN/g --> all occurences in the file
+
+Esc Mode
+===============
+u --> undo
+yy --> copy the line where you are
+p --> paste
+dd --> cut the line
+gg --> takes to top of the file
+shift+g --> takes us to bottom of the file
+
+Vim commands (if you need any vim commands check in google)
+
+Linux Administration
+=====================
+   A Linux administrator is a technical professional who manages and maintains Linux-based systems, including servers and desktops. Their primary responsibilities involve installation, configuration, security, and troubleshooting of Linux systems. They also handle tasks like user management, software updates, backups, and system monitoring.
+
+User management
+
+User Account Management
+
+Command	Description
+useradd <username>	Adds a new user.
+adduser <username>	More user-friendly wrapper around useradd (depends on distro).
+userdel <username>	Deletes a user.
+usermod <options> <username>	Modifies an existing user.
+passwd <username>	Sets or changes the password for a user.
+
+Group Management
+Command	Description
+groupadd <groupname>	Creates a new group.
+groupdel <groupname>	Deletes a group.
+groupmod <options> <groupname>	Modifies an existing group.
+usermod -aG <group> <user>	Adds a user to a group. (-aG = append to group)
+groups <username>	Lists groups a user belongs to.
+ Viewing User & Group Info
+Command	Description
+id <username>	Shows UID, GID, and groups of a user.
+who	Shows who is logged in.
+whoami	Shows the current logged-in username.
+getent passwd	Lists all users from /etc/passwd.
+cat /etc/passwd	View user account information.
+cat /etc/group	View group information.
+
+
+Other Useful User Management Operations
+
+
+Command	Description
+chage <username>	Manage password expiry info.
+sudo	Run commands as another user (typically root).
+su <user>	Switch to another user.
+
+
+CRUD --> Create – Read – Update – Delete
+
+Sudo su - now I’m in administrator
+
+useradd <user-name> --> create user
+id <user-name> --> displays the user info
+
+group --> list of similar users
+devops team have 20 members
+create devops group, add team members to the group
+
+in linux when you create user, by default group also will be created with same name..
+
+
+primary group and secondary group
+
+Primary Group
+1.The main group associated with a user.
+2.It's assigned automatically when the user is created.
+3.Used by default when the user creates new files (sets group ownership).
+4.Typically has the same name as the username.
+Example:
+id shanthi# Output: uid=1001(shanthi) gid=1001(shanthi) groups=1001(shanthi)
+Here, gid=1001(shanthi) is the primary group.
+ Secondary Group(s)
+5.Additional groups the user belongs to.
+6.Used to grant access to shared resources like files, directories, or devices.
+Example with secondary group:
+sudo usermod -aG developers shanthi
+Now:
+id shanthi# Output: uid=1001(shanthi) gid=1001(shanthi) groups=1001(shanthi),1002(developers)
+Here, developers is a secondary group.
+ Commands Summary:
+Task	Command
+View user's groups	id <username> or groups <username>
+Add to secondary group	sudo usermod -aG <group> <user>
+Change primary group	sudo usermod -g <newgroup> <user>
+
+In linux every user should have one primary group and at least one secondary group
+cat /etc/passwd  - user information
+cat /etc/group - group information
+
+1 primary group, atleast one secondary group
+
+groupadd devops --> devops group will be created
+
+usermod -g devops suresh
+usermod -aG testers suresh
+
+Userdel suresh --> deleted user name suresh
+cd /etc/group - group was not deleted, you should definitely delete the group too.
+
+groupdel suresh
+
+cd /home/suresh - switch to suresh directory 
+cd - changed the root directory
+
+How to remove user from secondary group in linux
+gpasswd -d suresh testers
+gpasswd -d suresh devops
+usermod -g suresh suresh
+
+How was it created by default
+Now also delete by default
+The commands used may differ across projects, as they depend on the project's environment, platform, and configuration needs.
+
+userdel suresh
+cat /etc/group
+
+I’m adding user again password must be set
+useradd suresh - user created
+passwd suresh - suresh@123
+
+In linux,we access should be done with default keys only. Do not access with passwords. So that we need to make changes to the configuration.
+
+vim /etc/ssh/sshd_config 
+Now, I will open vim /etc/ssh/sshd_config -- configuration file
+In this file,check password - it will be somewhere
+:?password - search this
+Password authentication yes- made the config changes
+
+sshd -t - for testing
+
+Checks the syntax and validity of the SSH daemon (sshd) configuration file (usually /etc/ssh/sshd_config), without starting or restarting the service.
+Purpose:
+1.Ensures there are no syntax errors in your SSH configuration before applying changes.
+2.Prevents you from accidentally breaking SSH access (especially important on remote servers like AWS EC2).
+
+Systemctl restart sshd
+
+Restarts the SSH daemon (sshd) service using systemctl, which is the service manager on most modern Linux systems (like CentOS, Ubuntu, RHEL, Fedora).
+
+When to Use:
+After editing the SSH configuration file (/etc/ssh/sshd_config)
+
+To apply changes like:
+
+3.Port number
+4.Authentication methods
+5.PermitRootLogin settings, etc.
+
+Take new server 
+Give ssh suresh@pub ip
+Password:suresh@123
+
+In certain Dockerfiles, creating users is necessary as part of the image setup, depending on the project’s security or application requirements.
+
+passwd <user-name>
