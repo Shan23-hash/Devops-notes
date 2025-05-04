@@ -1,0 +1,131 @@
+CLASS-3:
+
+Today’s Topics:
+
+Linux commands
+Vim editor
+File permissions
+
+/c/devops/daws-84s/daws-84s --> full path - give any folder
+
+ssh -i daws-84s ec2-user@I.P
+
+$ --> normal user
+# --> root/admin/super user
+/root --> root user home directory
+
+command <options> <inputs>
+
+/ --> root directory
+
+ls -l --> long listing format in alphabetical order
+ls -lr --> long listing format in reverse alphabetical order
+ls -lt --> latest files on top
+ls -ltr --> latest at bottom
+ls -la --> all files including hidden files and folders
+
+touch <file-name> --> creates empty file
+touch devops.txt
+
+cat > <file-name> --> type text, enter and ctrl+d
+previous content will be replaced
+cat >> <file-name> --> appends text to previous content
+
+
+> --> usually called as redirection
+
+mkdir <name> --> creates directory
+rmdir --> remove empty directory
+rm -f --> forcefully removes file
+rm -rf --> recursively forcefully delete the files and folders inside too
+
+CRUD --> create read update delete
+
+cp <source> <destination> --> copy files/folders
+mv <source> <destination> --> cut and paste
+
+wget <URL> --> downloads the file
+
+wget  https://raw.githubusercontent.com/daws-84s/notes/refs/heads/main/session-02.txt
+
+curl <URL> --> shows on the screen
+
+curl https://raw.githubusercontent.com/daws-84s/notes/refs/heads/main/session-02.txt
+
+
+
+cat <file-name> | grep <word-to-search>
+grep <word-to-search> <file>
+
+echo https://raw.githubusercontent.com/daws-84s/notes/refs/heads/main/session-02.txt | cut -d "/" -f1
+
+
+https:
+[ec2-user@ip-172-31-18-60 ~]$ echo https://raw.githubusercontent.com/daws-84s/notes/refs/heads/main/session-02.txt | cut -d "/" -f9
+session-02.txt
+
+
+https://raw.githubusercontent.com/daws-84s/notes/refs/heads/main/session-02.txt
+
+echo https://raw.githubusercontent.com/daws-84s/notes/refs/heads/main/session-02.txt | cut -d "/" -f1
+
+awk command
+------------
+echo https://raw.githubusercontent.com/daws-84s/notes/refs/heads/main/session-02.txt | awk -F "/" '{print $1F}'
+
+ echo https://raw.githubusercontent.com/daws-84s/notes/refs/heads/main/session-02.txt | awk -F "/" '{print $NF}'
+session-02.txt
+
+
+log files --> tail -f <log-file>
+
+find <where to search> -name <file-name>
+
+vim --> visually improved
+
+1exit
+2uname
+3uname -a
+4uname --help
+5pwd
+6mkdir --help
+7cd ..
+8pwd
+9ls
+10ls --help
+11cd --help
+12ls --help
+13touch devops.txt
+14ls -l
+15ls -lrth
+16cat >devops.txt
+17ls -lrt
+18cat devops.txt
+19cat >devops.txt
+20ls -lrt
+21cat devops.txt
+22wget https://raw.githubusercontent.com/daws-84s/notes/refs/heads/main/session-02.txt
+23curl https://raw.githubusercontent.com/daws-84s/notes/refs/heads/main/session-02.txt~
+24curl https://raw.githubusercontent.com/daws-84s/notes/refs/heads/main/session-02.txt
+25echo "hello world"
+26echo https://raw.githubusercontent.com/daws-84s/notes/refs/heads/main/session-02.txt | cut -d "/" -f1
+27echo https://raw.githubusercontent.com/daws-84s/notes/refs/heads/main/session-02.txt | cut -d "/" -f9
+28echo https://raw.githubusercontent.com/daws-84s/notes/refs/heads/main/session-02.txt | cut -d "/" -f1-8
+29echo https://raw.githubusercontent.com/daws-84s/notes/refs/heads/main/session-02.txt | cut -d "/" -f1-2
+30echo https://raw.githubusercontent.com/daws-84s/notes/refs/heads/main/session-02.txt | awk -F "/" '{print $NF}'
+31awk -F ":" '{print $1F}' users
+32cp /etc/passwd users
+33ls -l
+34cat users
+35awk -F ":" '{print $1F}' users
+36awk -F ":" '{print $1F,$3F}' users
+
+1.cd /etc/passwd
+2.cat users | head
+3.cat users | tail
+4.cat users | head -n6
+5.cat users | head -n2
+6.find / -name "users"
+7.sudo find / -name "users"
+8.find . -name "users"
+9.find . -name "*se*"
