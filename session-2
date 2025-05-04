@@ -1,0 +1,154 @@
+Class-2:
+
+Today’s topics:
+
+1. Client server
+2. Firewall
+3. Authentication Method
+4. Keys generation
+5 lunch server
+6 connecting servers
+
+International usage enable
+Credit/debit
+Names and address should match bank records
+
+What is computer?
+==================
+IP enabled device
+
+In Linux, "computer" refers to the physical machine, or hardware, that runs the operating system. Linux itself is a software operating system (OS) that manages the hardware and software on a computer. The kernel, which is a core part of Linux, acts as the intermediary between the hardware and other software, allowing them to interact.
+
+laptop == mobile == server == chip == tv ==> computer
+server ==> only to host applications
+
+RAM, OS, HD, Processor --> IP enabled device
+
+Client Server architecture
+
+Client-server architecture is a network model where clients request services from one or more servers. The server then processes these requests and provides the requested resources or services back to the client. This architecture is fundamental to many modern applications, including web browsing, email, and online banking.
+
+Networking between computers
+
+1. Network
+2. Facebook application
+
+serve --> lawyer serves to us, we are his client
+ex : server : TCS
+       client – HDFC,SBI etc…..
+
+Facebook is in Linux server, if problem comes we need to login to server..
+
+https://www.joindevops.com
+
+Windows:
+
+Protocol: https
+Port: 443
+IP: DNS IP
+Username and password --> authentication
+
+
+Linux:
+
+SSH --> secure shell
+Port: 22
+IP, Username and password/private-key
+
+Firewall --> checks inbound and outbound traffic
+
+inbound --> incoming traffic --> port number 22, 103.149.59.114
+outbound --> outgoing traffic
+
+authentication
+==================
+1. what you know --> username password
+2. what you have --> keys, tokens, authentication, rsa token
+3. what you are --> fingerprint, retina, palm, face
+
+Server == box == node
+
+lock = public
+key = private
+
+key pairs --> public key and private key
+
+
+1. create key pair
+2. create firewall
+3. import public key to aws account
+4. create server and attach public key
+5. attach firewall to server
+
+Git Bash --> Mini Linux in windows
+SSH client
+
+browser --> http/https client
+Linux Server --> SSH Server
+
+git bash == putty == super putty == mobaxterm == mac terminal = windows cmd
+
+ssh clients
+
+pwd --> present working directory
+
+User Directory
+C:\Users\siva --> windows format
+/c/Users/siva --> linux format
+
+windows --> not case sensitive Siva == siva == Siva  All are same
+Linux --> case sensitive --> Siva != siva no space in linux
+
+/c/devops/daws-84s == C:\devops\daws-84s
+
+ssh-keygen -f <file-name>
+
+ssh-keygen -f daws-84s
+
+ssh-rsa long-random-code 
+
+Region --> us-east-1
+
+Anywhere : 0.0.0.0/0 (add rule in aws)
+
+98.81.70.98, 22, SSH, ec2-user, private-key
+   Ip,port,ptotocol and key
+ssh -i <private-key> ec2-user@98.81.70.98
+
+OS --> Redhat, Ubuntu, centos, fedore, suse, oracle linux, amazon linux, debian, rocky linux, kali, solaris
+
+Linux is os or not --> Linux is kernel
+
+OS --> to interact with hardware
+
+Kernal --> heart and brain of OS
+
+Kernel + UI == OS
+
+Redhat --> kernel + user interface ==> Redhat OS
+Debian --> Linux kernel + UI ==> Debian
+
+99.9% same all Linux distros/flavours
+
+Redhat --> Open source --> code is free
+Redhat enterprise RHEL --> support
+
+RHEL = AWS Linux = Centos = Fedora = Rocky Linux = AlmaLinux
+
+command <options> <inputs>
+
+uname – linux(kernel)
+uname –a = all
+uname --help  get to know all the information
+uname –n  node name
+uname –p __. Processor
+
+/home/ec2-user --> linux home directory
+/c/users/siva --> windows home directory
+
+cd --> change directory
+
+cd .. --> one step back
+
+ls --> list subdirectories
+ls -l --> long list
